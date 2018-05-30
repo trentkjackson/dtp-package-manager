@@ -1,0 +1,13 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    ruby-gumbo (1.1.0)
+
+PLATFORMS
+  x64-mingw32
+
+DEPENDENCIES
+  ruby-gumbo (~> 1.1)
+
+BUNDLED WITH
+   1.16.2

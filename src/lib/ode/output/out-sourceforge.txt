@@ -1,0 +1,28 @@
+
+  [WWW.SOURCEFORGE.NET] 
+ 
+  /projects/openofficeorg.mirror/?source=directory
+  /projects/eclipse-cs/?source=directory
+  /projects/hibernate/?source=directory
+  /projects/tortoisesvn/?source=directory
+  /projects/moodle/?source=directory
+  /projects/sapnweclipse/?source=directory
+  /projects/mingw/?source=directory
+  /projects/portableapps/?source=directory
+  /projects/keepass/?source=directory
+  /projects/codeblocks/?source=directory
+  /projects/npp-plugins/?source=directory
+  /projects/wampserver/?source=directory
+  /projects/orwelldevcpp/?source=directory
+  /projects/filezilla/?source=directory
+  /projects/tomcatplugin/?source=directory
+  /projects/mingw-w64/?source=directory
+  /projects/winscp/?source=directory
+  /projects/gnuwin32/?source=directory
+  /projects/doublesvsoop/?source=directory
+  /projects/winmerge/?source=directory
+  /projects/xampp/?source=directory
+  /projects/libjpeg-turbo/?source=directory
+  /projects/jasperstudio/?source=directory
+  /projects/tor-browser.mirror/?source=directory
+  /projects/boost/?source=directory
