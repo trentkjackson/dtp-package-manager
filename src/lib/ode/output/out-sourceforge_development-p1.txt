@@ -1,5 +1,5 @@
 
-  [WWW.SOURCEFORGE.NET] 
+  [WWW.SOURCEFORGE.NET/PAGE=1] 
  
   /projects/openofficeorg.mirror/?source=directory
   /projects/eclipse-cs/?source=directory

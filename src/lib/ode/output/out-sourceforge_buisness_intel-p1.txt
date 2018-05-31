@@ -1,0 +1,28 @@
+
+  [WWW.SOURCEFORGE.NET/PAGE=1] 
+ 
+  /projects/pentaho/?source=directory
+  /projects/jasperserver/?source=directory
+  /projects/sofastatistics/?source=directory
+  /projects/datacleaner/?source=directory
+  /projects/sparklinesforxl/?source=directory
+  /projects/art/?source=directory
+  /projects/dw-rs/?source=directory
+  /projects/estimate/?source=directory
+  /projects/fleetco/?source=directory
+  /projects/jasperstarter/?source=directory
+  /projects/opensourcebirtreportdesigner/?source=directory
+  /projects/foswiki/?source=directory
+  /projects/openi/?source=directory
+  /projects/splitpdf/?source=directory
+  /projects/aaar/?source=directory
+  /projects/ibmspssstat/?source=directory
+  /projects/jacop-solver/?source=directory
+  /projects/xmlaconnect/?source=directory
+  /projects/projectnet/?source=directory
+  /projects/talendesb/?source=directory
+  /projects/excelcompare/?source=directory
+  /projects/adamsoft/?source=directory
+  /projects/query2report/?source=directory
+  /projects/csv2odf/?source=directory
+  /projects/bamboobsc/?source=directory

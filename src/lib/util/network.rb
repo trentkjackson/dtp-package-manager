@@ -16,6 +16,10 @@ def url_has_protocol(url)
 	return (url.include? "http") || (url.include? "https")
 end	
 
+def slice_at_path(url, path)
+	path_arr = url[0...url.index(path)]
+end
+
 # Returns true if the url has a valid ssl certificate (https).
 def is_url_secured(url)
   url = url.downcase
