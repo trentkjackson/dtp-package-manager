@@ -6,8 +6,8 @@
   /projects/web-erp/?source=directory
   /projects/grisbi/?source=directory
   /projects/openbravo/?source=directory
-  /projects/project-open/?source=directory
   /projects/adempiere/?source=directory
+  /projects/project-open/?source=directory
   /projects/turbocash/?source=directory
   /projects/postbooks/?source=directory
   /projects/frontaccounting/?source=directory
@@ -15,14 +15,14 @@
   /projects/keme/?source=directory
   /projects/buddi/?source=directory
   /projects/kmymoney2/?source=directory
-  /projects/jbilling/?source=directory
   /projects/osfinancials/?source=directory
-  /projects/fakturama/?source=directory
+  /projects/jbilling/?source=directory
   /projects/opentaps/?source=directory
+  /projects/fakturama/?source=directory
   /projects/yapbam/?source=directory
+  /projects/compiere/?source=directory
   /projects/php-expense-manager/?source=directory
   /projects/phreebooks/?source=directory
   /projects/fixedassets/?source=directory
-  /projects/compiere/?source=directory
   /projects/gst-accounting-software/?source=directory
   /projects/turquaz/?source=directory

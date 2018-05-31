@@ -5,7 +5,7 @@ require_relative '../util/network'
 require_relative '../util/file'
 require_relative '../util/array/sort.rb'
 
-# TODO: Make web scraper iterate through the website paginator
+# Format and prettify code.
 
 # List of websites the tool should scrape.
 # Don't include http/https
@@ -15,33 +15,33 @@ sourceforge_global_paginator_slice_point = 'os:windows'
 $urls = {
 	:wikipedia => [
 		"en.wikipedia.org/wiki/List_of_free_and_open-source_software_packages",
-		 "",
-		 "",
-		 0 # Entering a zero will make it so it doesn't iterate through pages for this key
+		"",
+		"",
+		0 # Entering a zero will make it so it doesn't iterate through pages for this key
 	],
 	:sourceforge_development => [
 		"www.sourceforge.net/directory/development/os:windows/",
-		 sourceforge_global_paginator_slice_point,
-		 sourceforge_global_paginator,
-		 2
+		sourceforge_global_paginator_slice_point,
+		sourceforge_global_paginator,
+		5
 	],
 	:sourceforge_buisness => [
 		"www.sourceforge.net/directory/business-enterprise/financial/accounting/os:windows/",
-		 "",
-		 "",
-		 0  # Entering a zero will make it so it doesn't iterate through pages for this key
+		sourceforge_global_paginator_slice_point,
+		sourceforge_global_paginator,
+		5
 	],
 	:sourceforge_crm => [
 		"www.sourceforge.net/directory/business-enterprise/enterprise/crm/os:windows/",
-		 sourceforge_global_paginator_slice_point,
-		 sourceforge_global_paginator,
-		 5
+		sourceforge_global_paginator_slice_point,
+		sourceforge_global_paginator,
+		5
 	],
 	:sourceforge_buisness_intel => [
 		"www.sourceforge.net/directory/business-enterprise/enterprise/enterprisebi/os:windows/",
-		 sourceforge_global_paginator_slice_point,
-		 sourceforge_global_paginator,
-		 2
+		sourceforge_global_paginator_slice_point,
+		sourceforge_global_paginator,
+		5
 	],
 }
 
@@ -111,7 +111,7 @@ def tcp_connect(active_host, active_key, active_path, current_page)
 		debug_header_status(res.code)
 		parse_response(res, active_key, current_page)
 
-	# If response status code refers to a redirection...
+		# If response status code refers to a redirection...
 	elsif $_3xx.include? res.code.to_i
 		debug_header_status(res.code)
 		res = Net::HTTP.get(URI.parse(http.get(active_path).header['location'])).force_encoding("utf-8");

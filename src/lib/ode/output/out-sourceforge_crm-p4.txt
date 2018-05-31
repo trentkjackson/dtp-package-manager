@@ -5,7 +5,6 @@
   /projects/onixerpcrm/?source=directory
   /projects/fat-free-crm/?source=directory
   /projects/opensmod/?source=directory
-  /projects/openxpertya/?source=directory
   /projects/citecrm/?source=directory
   /projects/delightfullabor/?source=directory
   /projects/avayaechi/?source=directory
@@ -17,12 +16,13 @@
   /projects/faves-erp/?source=directory
   /projects/jointarcrm/?source=directory
   /projects/swapp/?source=directory
+  /projects/isogest/?source=directory
   /projects/oplm/?source=directory
   /projects/jiwt/?source=directory
+  /projects/openxpertya/?source=directory
   /projects/vtigerportable/?source=directory
   /projects/sunianterp/?source=directory
+  /projects/isp-support/?source=directory
+  /projects/kardia/?source=directory
   /projects/openiacrm/?source=directory
   /projects/retailerorg/?source=directory
-  /projects/jethro-pmm/?source=directory
-  /projects/amix/?source=directory
-  /projects/crmfacil/?source=directory

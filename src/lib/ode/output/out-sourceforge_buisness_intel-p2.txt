@@ -3,10 +3,10 @@
  
   /projects/dstk3/?source=directory
   /projects/tribix/?source=directory
+  /projects/fina/?source=directory
   /projects/pdfreporter/?source=directory
   /projects/collabry/?source=directory
   /projects/erpnet/?source=directory
-  /projects/fina/?source=directory
   /projects/birtihubftype/?source=directory
   /projects/metaqa/?source=directory
   /projects/pentaho-plugins/?source=directory
@@ -23,6 +23,6 @@
   /projects/active-intelligence-server/?source=directory
   /projects/sbvrve/?source=directory
   /projects/open-enterprise/?source=directory
+  /projects/oasis/?source=directory
   /projects/geomondrian/?source=directory
-  /projects/cbsg/?source=directory
-  /projects/dstk2/?source=directory
+  /projects/bigchef/?source=directory

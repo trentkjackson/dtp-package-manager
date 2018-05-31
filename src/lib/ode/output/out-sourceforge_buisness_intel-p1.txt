@@ -5,8 +5,8 @@
   /projects/jasperserver/?source=directory
   /projects/sofastatistics/?source=directory
   /projects/datacleaner/?source=directory
-  /projects/sparklinesforxl/?source=directory
   /projects/art/?source=directory
+  /projects/sparklinesforxl/?source=directory
   /projects/dw-rs/?source=directory
   /projects/estimate/?source=directory
   /projects/fleetco/?source=directory
