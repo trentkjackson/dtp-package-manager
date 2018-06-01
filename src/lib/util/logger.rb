@@ -14,6 +14,7 @@ class Logger
 		return "[Logger #{@_24HourTime.to_s}]"
 	end
 
+	#TODO: Metaprogramming, get line and file from caller.
 	def self.error(info)
 		puts "#{self.get_head()} " + "ERROR".str_paint(get_fg("red")) + ": Line '#{__LINE__}' in #{__FILE__} (#{info})." 
 	end
@@ -24,6 +25,10 @@ class Logger
 
 	def self.log(message)
 		puts "#{self.get_head()}: " + "#{message}".str_paint(get_fg("blue"))
+	end
+
+	def self.success(message)
+		puts "#{self.get_head()} " + "Success: ".str_paint(get_fg("green")) + message.str_paint(get_fg("green"))
 	end
 
 	def self.plog(message)
