@@ -10,15 +10,16 @@ DEBUG = true
 # ARGV match doesn't include an extention it will traverse
 # through the folder downloading and organizing everything in it's new destination
 
-installation_path = 'C:/Users/Trent/Desktop/dtp installations'
+installation_path = '/Users/macair/desktop/dtp-package-installation-folder'
 if (ARGV[0] == "install" || ARGV[0] == "i") && !ARGV[0].nil? && !ARGV[1].nil?
-	HOST = '127.0.0.1'
+	HOST = '122.151.247.42'
 	USERNAME = 'user'
-	PASSWORD = 'password'
+	PASSWORD = ''
 	DIRECTORY = './'
 
 	# Logger.log("Connecting to '#{HOST}' as '#{USERNAME}'.")
-	Net::FTP.open('127.0.0.1', "user", "") do |ftp|
+	Net::FTP.open('122.151.247.42', "user", "") do |ftp|
+		ftp.passive = true
 		files = ftp.chdir('/')
 		matches = ftp.nlst.map do |x| 
 			if x.downcase.include? "."
@@ -33,23 +34,42 @@ if (ARGV[0] == "install" || ARGV[0] == "i") && !ARGV[0].nil? && !ARGV[1].nil?
 		Logger.log("_match >> #{match_}") if DEBUG
 		Logger.log("originalMatch >> #{originalMatch[0]}") if DEBUG
 		if match_.length > 1
-			Logger.warning("FTP server ceontains files with the same name. You should submit this and the following log to an issue thread on the GitHub page.")
+			Logger.warning("FTP server contains files with the same name. You should submit this and the following log to an issue thread on the GitHub page.")
 			Logger.log_data(match_, 5)
 		end
 		if !match_.empty?
 			puts "Package '#{match_[0]}' found, download will start shortly.".str_paint(Color.get_t("fg")["cyan"])
 			sleep(0.1)
 			match_file_name = match_[0].to_s
-			match_file_size = ftp.size(originalMatch[0])
+			# match_file_size = ftp.size(originalMatch[0])
 			progress = 0
-			puts "Download started for package" + " #{match_file_name}".str_paint(Color.get_t("fg")["red"]) + " (" + "#{(match_file_size.to_f * (10 ** -3).to_f)} kB".str_paint(Color.get_t("fg")["cyan"]) +")."
+			# match_file_size.to_f * (10 ** -3).to_f)}
+			puts "Download started for package" + " #{match_file_name}".str_paint(Color.get_t("fg")["red"]) + " (" + "[ADD FILE SIZE HERE] kB".str_paint(Color.get_t("fg")["cyan"]) +")."
 			sleep(0.1)
-			ftp.getbinaryfile(originalMatch[0], installation_path + "/#{originalMatch[0]}", 1024) do |data|
-			  progress += data.size
-			  file_completion_point = ((progress).to_f / match_file_size.to_f) * 100
-			  printf("\rDownload progress: "+ "[" + "%-40s" + "]", "=".str_paint(Color.get_t("fg")["cyan"]) * (file_completion_point/2.5))
-			  sleep(0.025)
+			puts "#{ftp.pwd()}#{originalMatch[0]}/**/*/"
+
+			# FIX THIS: I think we are actually creating a directory on the ftp server rather than on our computer
+			# and that is why the code below isn't actually producing anything. I'll try and get it fixed by tomorrow though.
+
+			package_content = Dir.glob("#{ftp.pwd()}#{originalMatch[0]}/**/*").sort
+			puts package_content[0]
+			package_content.each do |package_data_name|
+				puts package_data_name
+				if File::directory? package_data_name
+					ftp.mkdir package_data_name
+				else
+					File.open(file) do |file_name|
+						ftp.putbinaryfile(file_name, package_data_name, 1024) #do |data|
+						  #progress += data.size
+						  #file_completion_point = ((progress).to_f / ftp.size(file_name).to_f) * 100
+						  #printf("\rDownload progress: "+ "[" + "%-40s" + "]", "=".str_paint(Color.get_t("fg")["cyan"]) * (file_completion_point/2.5))
+						  #sleep(0.025)
+						#end
+					end
+				end
 			end
+
+
 			sleep(0.1)
 			puts "\nSuccessfully installed package to '" + installation_path.str_paint(Color.get_t("fg")["cyan"]) + "'."
 		else
