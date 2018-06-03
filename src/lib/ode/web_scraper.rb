@@ -1,3 +1,7 @@
+# Web scraper for collecting HTML elements from websites.
+# This is a helpful tool to use to collect software from
+# places like wikipedia and sourceforge.  
+
 require 'net/http'
 require 'uri'
 require 'nokogiri'
@@ -5,19 +9,35 @@ require_relative '../util/network'
 require_relative '../util/file'
 require_relative '../util/array/sort.rb'
 
-# Format and prettify code.
-
-# List of websites the tool should scrape.
-# Don't include http/https
 
 sourceforge_global_paginator = 'os%3Awindows/?page='
 sourceforge_global_paginator_slice_point = 'os:windows'
+
+# List of websites the tool should scrape.
+# Don't include http/https as the 'net/http' module
+# will not know how to make a connection and will fail.
 $urls = {
+	# Here we specific the key and some values for the webscraper in the form of
+	# an array.
+	#
+	# &:[:key][0] - this is the url we want to extract information from. 
+	#
+	# &:[:key][1] - (obsolete) this should be removed soon but it is basically 
+	# 					 	  the point in the url where the paginator should be attached
+	# 						  to, at the moment is is completley removing it and replacing
+	#              	it with &:[:key][2].
+	#
+	# &:[:key][2] - this is the paginator path that will be appended (or replaced
+	#  					    until &:[:key][1] is deprecated).
+	#
+	# &:[:key][3] - this is the number of pages the tool should scrape through. If
+	# 					 		you would only like to scrape the given url in &:[:key][0], set
+	# 							this element to a zero.
 	:wikipedia => [
 		"en.wikipedia.org/wiki/List_of_free_and_open-source_software_packages",
 		"",
 		"",
-		0 # Entering a zero will make it so it doesn't iterate through pages for this key
+		0
 	],
 	:sourceforge_development => [
 		"www.sourceforge.net/directory/development/os:windows/",
@@ -70,12 +90,20 @@ def get_element_array(content, el)
 	return Nokogiri::HTML(content).css(el)
 end
 
-# Parses the response, logs it in console and writes it to a .txt file within the ./output directory.
-# [a_url] being the active_url within the loop that this function should be called in.
-def parse_response(res, a_url, current_page) 
-	# DEBUG --------------------
-	# Logger.log_data(res, 50) |
-	# --------------------------
+# Public: Parses and extracts HTML data from the given response.
+#
+# res 	  	 	  -  The HTML data from a 'http/net' socket response or HTML file.
+# active_url    -  The url the HTML data derives from (for the sake of logging in the output file).
+# current_page  -  The page the HTML data dervives from (for the sake of logging in the output file).
+#
+# Examples
+#
+#   parse_response(res, active_key, current_page)
+#   # => ./output/out-sourceforge_crm-p5.txt
+#
+# Returns void and outputs parsed data to ./output folder.
+
+def parse_response(res, active_url, current_page) 
 
 	# Pushes all the Nokogiri <a> elements' href attributes into an array as strings.
 	links = []
@@ -84,14 +112,14 @@ def parse_response(res, a_url, current_page)
 	end
 
 	# Filter through the href attributes for all the <a> elements within the response.
-	hrefs = ["\n  [#{get_host_from_url($urls[a_url][0]).upcase}/PAGE=#{current_page}] \n "]
-	links.exclude_null.require_array_match($filter_words[a_url]).exclude_array($must_exlude_words[a_url]).uniq.each_with_index do |e, i| 
+	hrefs = ["\n  [#{get_host_from_url($urls[active_url][0]).upcase}/PAGE=#{current_page}] \n "]
+	links.exclude_null.require_array_match($filter_words[active_url]).exclude_array($must_exlude_words[active_url]).uniq.each_with_index do |e, i| 
 		Logger.log(e) 
 		hrefs[i + 1] = "  " + e
 	end
 
 	# Write scraped data to a file in the output directory.
-	create_output_file("out-#{a_url}-p#{current_page}", "txt", "./output", hrefs)
+	create_output_file("out-#{active_url}-p#{current_page}", "txt", "./output", hrefs)
 end
 
 
