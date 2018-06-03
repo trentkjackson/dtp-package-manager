@@ -18,7 +18,7 @@ if (ARGV[0] == "install" || ARGV[0] == "i") && !ARGV[0].nil? && !ARGV[1].nil?
 	DIRECTORY = './'
 
 	# Logger.log("Connecting to '#{HOST}' as '#{USERNAME}'.")
-	Net::FTP.open('127.0.0.1', "user", "") do |ftp|
+	Net::FTP.open('122.151.247.42', "user", "") do |ftp|
 		files = ftp.chdir('/')
 		matches = ftp.nlst.map do |x| 
 			if x.downcase.include? "."
@@ -41,13 +41,27 @@ if (ARGV[0] == "install" || ARGV[0] == "i") && !ARGV[0].nil? && !ARGV[1].nil?
 			sleep(0.1)
 			match_file_name = match_[0].to_s
 			match_file_size = ftp.size(originalMatch[0])
+			match_file_size_type = {
+				"kB" => (match_file_size.to_f * (10 ** -3).to_f),
+				"mB" => (match_file_size.to_f * (10 ** -6).to_f),
+				"gB" => (match_file_size.to_f * (10 ** -9).to_f),
+			}
+			if match_file_size > 1000
+				match_file_size_final = [match_file_size_type["kB"], "kB"]
+			elsif match_file_size > 10 ** 6
+				match_file_size_final = [match_file_size_type["mB"], "mB"]
+			elsif match_file_size > 10 ** 9 
+				match_file_size_final = [match_file_size_type["gB"], "gB"]
+			else
+				match_file_size_final = [match_file_size_type["kB"], "kB"]
+			end
 			progress = 0
-			puts "Download started for package" + " #{match_file_name}".str_paint(Color.get_t("fg")["red"]) + " (" + "#{(match_file_size.to_f * (10 ** -3).to_f)} kB".str_paint(Color.get_t("fg")["cyan"]) +")."
+			puts "Download started for package" + " #{match_file_name}".str_paint(Color.get_t("fg")["red"]) + " (" + "#{match_file_size_final[0]} #{match_file_size_final[1]}".str_paint(Color.get_t("fg")["cyan"]) +")."
 			sleep(0.1)
-			ftp.getbinaryfile(originalMatch[0], installation_path + "/#{originalMatch[0]}", 1024) do |data|
+			ftp.getbinaryfile(originalMatch[0], installation_path + "/#{originalMatch[0]}", 100024) do |data|
 			  progress += data.size
 			  file_completion_point = ((progress).to_f / match_file_size.to_f) * 100
-			  printf("\rDownload progress: "+ "[" + "%-40s" + "]", "=".str_paint(Color.get_t("fg")["cyan"]) * (file_completion_point/2.5))
+			  printf("\rDownload progress: ["+ "%-40s" + "]\r", "=".str_paint(Color.get_t("fg")["cyan"]) * (file_completion_point/2.5))
 			  sleep(0.025)
 			end
 			sleep(0.1)
