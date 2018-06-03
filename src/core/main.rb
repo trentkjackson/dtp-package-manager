@@ -55,13 +55,13 @@ if ARGV[0] == "install" || ARGV[0] == "i" && !ARGV[0].nil? && !ARGV[1].nil?
 
 			case
 			when match_file_size <= 1000 
-			    match_file_size_final = [match_file_size_type["kB"], "kB"]
+			    match_file_size_final = [match_file_size_type[:kB], "kB"]
 			when match_file_size > 1000 && match_file_size <= (10 ** 9)
-			    match_file_size_final = [match_file_size_type["mB"], "mB"]
+			    match_file_size_final = [match_file_size_type[:mB], "mB"]
 			when match_file_size > (10 ** 9)
-			    match_file_size_final = [match_file_size_type["gB"], "gB"]
+			    match_file_size_final = [match_file_size_type[:gB], "gB"]
 			else
-			    match_file_size_final = [match_file_size_type["kB"], "kB"]
+			    match_file_size_final = [match_file_size_type[:kB], "kB"]
 			end
 
 			puts "Download started for package #{match_file_name.str_paint(Color.get_t('fg')['red'])} "\
