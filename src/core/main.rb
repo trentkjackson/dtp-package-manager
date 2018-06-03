@@ -1,5 +1,5 @@
 # Downloads the package provided in the console arguments from the FTP server.
-# The "install" section of the package manager.
+# The "install" section of the package manager. 
 require 'net/ftp'
 require_relative '../lib/util/logger'
 require_relative '../lib/util/file'
