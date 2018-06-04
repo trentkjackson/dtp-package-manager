@@ -1,4 +1,3 @@
-# Colors
 class Color 
 	@k = ["black", "red", "green", "brown", "blue", "magenta", "cyan", "gray"]
 	@fg_v = [*30..37]
@@ -28,7 +27,11 @@ end
 # String prototyping
 class String 
 	def str_paint(color)
-		return "\033[#{color}m#{self}\033[0m"
+		if(CONFIG["colorize-text"])
+			return "\033[#{color}m#{self}\033[0m"
+		else
+			return self
+		end
 	end
 end
 
