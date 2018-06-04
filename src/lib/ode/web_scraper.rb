@@ -85,7 +85,7 @@ $must_exlude_words = {
 	:sourceforge_buisness_intel => sourceforge_global_exclusion_filters
 }
 
-# Just for simplicity.
+
 def get_element_array(content, el)
 	return Nokogiri::HTML(content).css(el)
 end
@@ -102,7 +102,6 @@ end
 #   # => ./output/out-sourceforge_crm-p5.txt
 #
 # Returns void and outputs parsed data to ./output folder.
-
 def parse_response(res, active_url, current_page) 
 
 	# Pushes all the Nokogiri <a> elements' href attributes into an array as strings.

@@ -1,8 +1,13 @@
 GEM
   remote: https://rubygems.org/
+  specs:
+    zip (2.0.2)
 
 PLATFORMS
   x64-mingw32
+
+DEPENDENCIES
+  zip
 
 BUNDLED WITH
    1.16.2

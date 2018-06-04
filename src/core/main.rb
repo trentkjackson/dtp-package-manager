@@ -11,6 +11,7 @@ HOST = "122.151.247.42"
 USERNAME = "user"
 PASSWORD = ""
 DIRECTORY = '/'
+DOWNLOAD_CHUNK_SIZE = 100000
 
 if ARGV[0] == "install" || ARGV[0] == "i" && !ARGV[0].nil? && !ARGV[1].nil?
 	Logger.log("Connecting to '#{HOST}' as '#{USERNAME}'.") if DEBUG
@@ -73,14 +74,15 @@ if ARGV[0] == "install" || ARGV[0] == "i" && !ARGV[0].nil? && !ARGV[1].nil?
 			# 1) We add any bytes of data we may have recieved from the current chunk.
 			# 2) We print the percentage of progress / file_size in the form of a loading bar.
 			progress = 0
-			ftp.getbinaryfile(match_with_extension[0], INSTALLATION_PATH + "/#{match_with_extension[0]}") do |data|
+			ftp.getbinaryfile(match_with_extension[0], INSTALLATION_PATH + "/#{match_with_extension[0]}", DOWNLOAD_CHUNK_SIZE) do |data|
 			  progress += data.size
 			  file_completion_point = ((progress).to_f / match_file_size.to_f) * 100
 
 			  # TODO: Fix the repeating square bracket that appears when downloading large amounts of data.
-			  printf("\rDownload progress: ["+ "%-40s" + "]\r", "=".str_paint(Color.get_t("fg")["cyan"]) * (file_completion_point/2.5))
+			  printf("\rDownload progress: ["+ "%-40s" + "]", "=".str_paint(Color.get_t("fg")["cyan"]) * (file_completion_point/2.5))
 			end
-
+			puts "\nUnzipping package...".str_paint(Color.get_t('fg')["cyan"])
+			unzip_and_extract_locally("#{INSTALLATION_PATH}/#{match_with_extension[0]}", true)
 			puts "\nSuccessfully installed package to '#{INSTALLATION_PATH.str_paint(Color.get_t('fg')['cyan'])}'."
 		else
 			puts "Sorry, couldn't find a package titled '#{ARGV[1]}'".str_paint(Color.get_t('fg')["red"])
